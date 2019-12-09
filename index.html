@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>アクセシビリティカラーヘルパー</title>
+<link rel="stylesheet" href="./css/style.css">
+<script src="./js/main.js"></script>
+</head>
+<body>
+<form action="./" onsubmit="return false;">
+
+
+<div class="lyWrap">
+<section class="lyPalette">
+	<h1>アクセシビリティカラーヘルパー</h1>
+	<h2 class="hidden">カラーパレット</h2>
+
+	<section class="lyPalette--input">
+		<h2 class="hidden">色指定</h2>
+		<div class="inputColor">
+			<div class="inputColor--value"><input type="text" value="#000" id="inputColorValue"></div>
+			<div class="inputColor--submit"><input type="button" value="確認" id="inputColorSubmit"></div>
+		</div>
+		<div class="result" id="result">
+			<p class="result--inputColor"><span class="result--title">入力した色 :</span><span id="resultInputColor"></span></p>
+			<p class="result--selectionColor"><span class="result--title">選択した色 :</span><span id="resultSelectionColor"></span></p>
+			<p class="result--contrast"><span class="result--title">コントラスト比 :</span><span id="resultContrast"></span></p>
+		</div>
+	</section>
+
+	<section class="lyPalette--setting" id="selectContrast" style="visibility: hidden;">
+		<h3 class="hidden">カラーパレット設定</h3>
+		<div class="selectContrast">
+			<p class="selectContrast--title">コントラスト比 :</p>
+			<p class="selectContrast--input"><input type="text" class="selectContrast--input" id="inputContrast" value="7">以上</p>
+		</div>
+
+		<div class="selectPaletteSize">
+			<p class="selectPaletteSize--title">パレットサイズ : </p>
+			<label><input type="radio" name="selectPaletteSize" id="selectPaletteSize_1" value="20" checked>小</label>
+			<label><input type="radio" name="selectPaletteSize" id="selectPaletteSize_2" value="10">中</label>
+			<label><input type="radio" name="selectPaletteSize" id="selectPaletteSize_3" value="5">大</label>
+		</div>
+
+		<div class="slider" id="lightnessSlider">
+			<p class="slider--title">パレットの明度 : </p>
+			<span class="slider--value" id="sliderValue"></span>
+			<input type="range" class="slider--range" id="sliderRange">
+		</div>
+	</section>
+
+
+	<section class="lyPalette--main" id="palette" style="visibility: hidden;">
+		<h3 class="hidden">パレット</h3>
+		<div class="palette palette__fullColor" id="paletteFullColor"></div>
+		<div class="palette palette__gray" id="paletteGray"></div>
+	</section>
+</section>
+
+
+<section class="lyPreView" id="view" style="visibility: hidden;">
+	<h2 class="hidden">サンプルテキスト</h2>
+	<div class="view">
+		<div class="tool">
+			<div class="swap"><button id="swap"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><title>入れ替え</title><path d="M19 8l-4 4h3c0 3.31-2.69 6-6 6-1.01 0-1.97-.25-2.8-.7l-1.46 1.46C8.97 19.54 10.43 20 12 20c4.42 0 8-3.58 8-8h3l-4-4zM6 12c0-3.31 2.69-6 6-6 1.01 0 1.97.25 2.8.7l1.46-1.46C15.03 4.46 13.57 4 12 4c-4.42 0-8 3.58-8 8H1l4 4 4-4H6z"/><path d="M0 0h24v24H0z" fill="none"/></svg></button></div>
+			<div class="size"><button id="size"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAMAAAAp4XiDAAAAgVBMVEUAAAADAwMEBAQEBAQDAwMDAwMDAwMDAwMDAwMEBAQDAwMCAgIAAAAAAAAEBAQDAwMAAAAAAAAAAAAAAAADAwMDAwMEBAQEBAQDAwMEBAQEBAQDAwMDAwMDAwMEBAQCAgIAAAAAAAAAAAAAAAADAwMDAwMDAwMAAAAAAAAAAAADAwO5MyTnAAAAKnRSTlMA/IXCqff18N3ZvW5FIXtWQQ0IBOfi082ijMaymZiBZEorGRa5kE8wLhveWywNAAABFklEQVRIx+2S23aCMBBFA0oQKEKlWLFeWu11/v8Du8yZMYHhgdd2sR905QwnK2RjZmb+Gt0CVJMbj8SsJldOJJRTKy0Ju4mNN7pjx+ZfS0cTREvyvBpNjlERRAl5FrrRRBhlPqqQpO432qhKQcz1Hj3j2TXytapkUjkOpOzxr9VcSEglirE+m3ZczfEW4iQ1R0/k2JiPcTWpuy13ulykyHWUo2pqbHhy79uEUmLsp9XkeMEr1IRSImstgb2W0vH5M0gJ0WoKRAnvfIGUAK1m1R8dIEXR+sbPYJRCisarOQxHtUjZxoDzXV9K8nADH1T+TaDqn9x6KYHByF3EC9+RYToCn7zG/IzF1i0SPpdUSgLvZmbm3/ALDvBRv7qRuj0AAAAASUVORK5CYII=" alt="表示サイズ変更"></button></div>
+		</div>
+		<div class="view--text" id="viewText">
+			<p class="view--paragraph__jp">バケットホイール掘削機は過去1世紀にわたり使用されており、1920年代にはいくつかの製造会社が起業している。全体的なコンセプトの変更は行われていない一方、そのサイズは1978年にSRs 6300とBagger288ができてから劇的に成長しており、<b>1995年に製作されたBWE「Bagger 293」はその全長225メートル、全高96メートル、総重量14,200トンにも及ぶ。</b>バケットホイールの直径は21.6メートルであり、18個のバケットが取り付けられており、それぞれが6.6立方メートル（m³）の鉱物を削り出し保持できる他、マイナス45度の過酷な寒冷地でも稼動できるよう設計されている。</b></p>
+			<p class="view--paragraph__en">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, <b>quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</b> Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+		</div>
+	</div>
+</section>
+</div>
+
+
+
+</form>
+</body>
+</html>
