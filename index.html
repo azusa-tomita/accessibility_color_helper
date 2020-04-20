@@ -14,26 +14,29 @@
 <div class="lyWrap">
 <section class="lyPalette">
 	<h1>アクセシビリティカラーヘルパー</h1>
+	<div class="explanation">
+		<p>コントラストを維持できる色の一覧を確認できます。</p>
+		<p>hex(#000000)か、rgb()、hsl()で入力してください。</p>
+	</div>
 	<h2 class="hidden">カラーパレット</h2>
 
 	<section class="lyPalette--input">
 		<h2 class="hidden">色指定</h2>
 		<div class="inputColor">
-			<div class="inputColor--value"><input type="text" value="#000" id="inputColorValue"></div>
-			<div class="inputColor--submit"><input type="button" value="確認" id="inputColorSubmit"></div>
+			<div class="inputColor--value"><span class="inputColor--colorPiece" id="inputColorPiece"></span><input type="text" value="#fff" id="inputColorValue"></div>
+			<div class="inputColor--additional">
+				<input type="checkbox" aria-label="色を追加する" class="inputColor--add" id="addInputColor">
+				<input type="text" value="#000" id="inputAdditionalColorValue">
+			</div>
 		</div>
-		<div class="result" id="result">
-			<p class="result--inputColor"><span class="result--title">入力した色 :</span><span id="resultInputColor"></span></p>
-			<p class="result--selectionColor"><span class="result--title">選択した色 :</span><span id="resultSelectionColor"></span></p>
-			<p class="result--contrast"><span class="result--title">コントラスト比 :</span><span id="resultContrast"></span></p>
-		</div>
+		<div class="inputColor--submit"><input type="button" value="確認" id="inputColorSubmit"></div>
 	</section>
 
 	<section class="lyPalette--setting" id="selectContrast" style="visibility: hidden;">
 		<h3 class="hidden">カラーパレット設定</h3>
 		<div class="selectContrast">
 			<p class="selectContrast--title">コントラスト比 :</p>
-			<p class="selectContrast--input"><input type="text" class="selectContrast--input" id="inputContrast" value="7">以上</p>
+			<p class="selectContrast--input"><input type="text" class="selectContrast--input" id="inputContrast" value="3">以上</p>
 		</div>
 
 		<div class="selectPaletteSize">
@@ -60,6 +63,37 @@
 
 
 <section class="lyPreView" id="view" style="visibility: hidden;">
+	<div class="result" id="result">
+		<table>
+			<thead>
+				<tr>
+					<th>入力</th>
+					<th>選択</th>
+					<th>コントラスト</th>
+				</tr>
+			</thead>
+			<tr>
+				<td>
+					<p class="result--inputColor"><span id="resultInputColor"></span></p>
+				</td>
+				<td rowspan="2">
+					<p class="result--selectionColor"><span id="resultSelectionColor"></span></p>
+				</td>
+				<td>
+					<p class="result--contrast"><span id="resultContrast"></span></p>
+				</td>
+			</tr>
+			<tr id="resultAdditionalColor" style="display: none;">
+				<td>
+					<p class="result--inputColor"><span id="resultInputAdditionalColor"></span></p>
+				</td>
+				<td>
+					<p class="result--contrast"><span id="resultAdditionalColorContrast"></span></p>
+				</td>
+			</tr>
+		</table>
+	</div>
+
 	<h2 class="hidden">サンプルテキスト</h2>
 	<div class="view">
 		<div class="tool">
@@ -67,8 +101,24 @@
 			<div class="size"><button id="size"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAMAAAAp4XiDAAAAgVBMVEUAAAADAwMEBAQEBAQDAwMDAwMDAwMDAwMDAwMEBAQDAwMCAgIAAAAAAAAEBAQDAwMAAAAAAAAAAAAAAAADAwMDAwMEBAQEBAQDAwMEBAQEBAQDAwMDAwMDAwMEBAQCAgIAAAAAAAAAAAAAAAADAwMDAwMDAwMAAAAAAAAAAAADAwO5MyTnAAAAKnRSTlMA/IXCqff18N3ZvW5FIXtWQQ0IBOfi082ijMaymZiBZEorGRa5kE8wLhveWywNAAABFklEQVRIx+2S23aCMBBFA0oQKEKlWLFeWu11/v8Du8yZMYHhgdd2sR905QwnK2RjZmb+Gt0CVJMbj8SsJldOJJRTKy0Ju4mNN7pjx+ZfS0cTREvyvBpNjlERRAl5FrrRRBhlPqqQpO432qhKQcz1Hj3j2TXytapkUjkOpOzxr9VcSEglirE+m3ZczfEW4iQ1R0/k2JiPcTWpuy13ulykyHWUo2pqbHhy79uEUmLsp9XkeMEr1IRSImstgb2W0vH5M0gJ0WoKRAnvfIGUAK1m1R8dIEXR+sbPYJRCisarOQxHtUjZxoDzXV9K8nADH1T+TaDqn9x6KYHByF3EC9+RYToCn7zG/IzF1i0SPpdUSgLvZmbm3/ALDvBRv7qRuj0AAAAASUVORK5CYII=" alt="表示サイズ変更"></button></div>
 		</div>
 		<div class="view--text" id="viewText">
-			<p class="view--paragraph__jp">バケットホイール掘削機は過去1世紀にわたり使用されており、1920年代にはいくつかの製造会社が起業している。全体的なコンセプトの変更は行われていない一方、そのサイズは1978年にSRs 6300とBagger288ができてから劇的に成長しており、<b>1995年に製作されたBWE「Bagger 293」はその全長225メートル、全高96メートル、総重量14,200トンにも及ぶ。</b>バケットホイールの直径は21.6メートルであり、18個のバケットが取り付けられており、それぞれが6.6立方メートル（m³）の鉱物を削り出し保持できる他、マイナス45度の過酷な寒冷地でも稼動できるよう設計されている。</b></p>
-			<p class="view--paragraph__en">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, <b>quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</b> Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+			<p class="view--paragraph__jp">バケットホイール掘削機は過去1世紀にわたり使用されており、<a href="#">1920年代にはいくつかの製造会社が</a>起業している。全体的なコンセプトの変更は行われていない一方、そのサイズは1978年にSRs 6300とBagger288ができてから劇的に成長しており、<b>1995年に製作された<a href="#">BWE「Bagger 293」</a>はその全長225メートル、全高96メートル、総重量14,200トンにも及ぶ。</b>バケットホイールの直径は21.6メートルであり、18個のバケットが取り付けられており、それぞれが6.6立方メートル（m³）の鉱物を削り出し保持できる他、マイナス45度の過酷な寒冷地でも稼動できるよう設計されている。</b></p>
+			<p class="view--paragraph__en">Lorem ipsum dolor sit amet, <a href="#">consectetur adipiscing elit</a>, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, <b>quis nostrud exercitation ullamco <a href="#">laboris nisi ut</a> aliquip ex ea commodo consequat.</b> Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+		</div>
+		<div class="view--guide">
+			<dl>
+				<div>
+					<dt>bg:</dt>
+					<dd id="viewGuideBg"></dd>
+				</div>
+				<div>
+					<dt>text:</dt>
+					<dd id="viewGuideText"></dd>
+				</div>
+				<div>
+					<dt>link:</dt>
+					<dd id="viewGuideLink"></dd>
+				</div>
+			</dl>
 		</div>
 	</div>
 </section>

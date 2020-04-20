@@ -49,10 +49,11 @@ h3{font-size:1.8286rem;}
 }
 .lyPalette--input{
 	position: relative;
-	margin-top:1.6rem;
+	margin-top:2.4rem;
+	display:flex;
 }
 .lyPalette--setting{
-	margin-top:6.4rem;
+	margin-top:4.0rem;
 }
 .lyPalette--main{
 	position: relative;
@@ -66,24 +67,100 @@ h3{font-size:1.8286rem;}
 
 
 h1{
-	color:#595959;
+	color:#666;
 }
 
-.inputColor{
-	display:flex;
+.explanation{
+	margin-top:1.6rem;
+	color:#666;
+	font-size:1.4rem;
 }
-.inputColor--value > input{
+
+
+.inputColor--value > [type="text"],
+.inputColor--additional > [type="text"]{
 	display: inline-block;
 	-webkit-appearance: none;
-	width:6em;
+	width:442px;
 	padding:0 0.8rem;
 	border:1px solid #595959;
 	border-radius:2px;
 	font-size:1.8286rem;
 	line-height: 3.072rem;
 }
+
+
+
+.inputColor--additional{
+	display:flex;
+	flex-direction: row-reverse;
+	justify-content: flex-end;
+	align-items: center;
+	position: relative;
+}
+.inputColor--additional > input{
+	flex:none;
+}
+
+
+
+.inputColor--add{
+	position: absolute;
+	top:1.4rem;
+	right:0.4rem;
+}
+
+@supports (-webkit-appearance: none) or (-moz-appearance: none) or (appearance: none) {
+	.inputColor--add {
+		-webkit-appearance: none;
+		-moz-appearance: none;
+		appearance: none;
+		display: inline-block;
+		box-sizing: border-box;
+		width: 20px;
+		height: 20px;
+		margin: 0;
+		padding: 0;
+		border: 0;
+		border-radius: 100%;
+		background: #999;
+		vertical-align: middle;
+		cursor: pointer;
+	}
+	.inputColor--add::after {
+		content: "＋";
+		position: absolute;
+		top: 0;
+		left: 0;
+		font-size:15px;
+		line-height: 1;
+		width: 20px;
+		height: 20px;
+		color:#fff;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+	.inputColor--add:checked::after {
+		content:"−"
+	}
+}
+
+.inputColor--add + [type="text"]{
+	display:none;
+}
+.inputColor--add:checked{
+	margin-left:-24px;
+}
+.inputColor--add:checked + input{
+	display: inline;
+	margin-top:0.8rem;
+}
+
+
 .inputColor--submit{
 	margin-left:0.8rem;
+	align-self: flex-end;
 }
 .inputColor--submit > input{
 	display: inline-block;
@@ -100,6 +177,8 @@ h1{
 .inputColor--submit > input:active{
 	background:#737373;
 }
+
+
 
 .selectContrast{
 	position: relative;
@@ -204,6 +283,9 @@ h1{
 	position: relative;
 	outline:1px solid gray;
 }
+.palette + .palette{
+	margin-top:0.8rem
+}
 
 .palette--piece:empty{
 	border-color:#fff !important;
@@ -288,15 +370,11 @@ h1{
 .palette[data-lightness="95"] .palette--page[data-lightness="95"]{z-index:1;}
 
 .result{
-	position: absolute;
-	top:0;
-	right:0;
 	visibility: hidden;
 	font-size: 1.28rem;
 }
 .result p{
 	display:flex;
-	line-height: 1;
 }
 .result p > span{
 	flex:1 1 auto;
@@ -310,25 +388,70 @@ h1{
 	margin-right: 0.8rem;
 }
 
-.result--inputColor .result--title + span,
-.result--selectionColor .result--title + span{
+.result--inputColor > span,
+.result--selectionColor > span{
+	border-left: 0 none transparent;
+	padding-left: 1.6rem;
+}
+.result--inputColor > span,
+.result--selectionColor > span,
+.result--contrast > span{
+	font-family: monospace;
+	text-align: left;
+	border-left-width:0;
+	border-left-style:none;
+	position: relative;
 	margin-top:-2px;
-	border-left: 1.5rem solid transparent;
 	text-transform: uppercase;
-	width:6em;
-	padding-left:0.2em;
 }
 
-.result--inputColor .result--title + span,
-.result--selectionColor .result--title + span,
-.result--contrast .result--title + span{
-	font-family: monospace;
-	font-size:1.7rem;
-	text-align: left;
+.result--inputColor > span::before,
+.result--selectionColor > span::before{
+	content:"";
+	box-sizing: border-box;
+	display: block;
+	width:1.25rem;
+	height:1.25rem;
+	margin-right:0.2em;
+	border-left-width:1.25rem;
+	border-left-style:solid;
+	border-left-color:inherit;
+	box-shadow: 0 0 1px #999;
+	position: absolute;
+	left:0;
+	top:0.28em;
 }
-.result--selectionColor .result--title + span{
-	text-align: right;
+.result--inputColor > span:empty,
+.result--selectionColor > span:empty{
+	display: none;
 }
+
+.result table{
+	border-collapse: collapse;
+	margin-top:0.45rem;
+}
+.result table thead th{
+	font-size:12px;
+}
+.result table th{
+	color:#595959;
+}
+.result table td{
+	padding:8px 0;
+	min-width: 4.7em;
+	font-size:1.3em;
+}
+.result table td:nth-child(2){
+	padding-left:0.8rem;
+	padding-right:0.8rem;
+}
+.result table td:last-child  span{
+	text-align: center;
+}
+.result table tr + tr td{
+	border-top:1px solid #595959;
+}
+
 
 .view{
 	position: relative;
@@ -373,11 +496,41 @@ h1{
 }
 .view--text{
 	padding:2.4rem;
+	box-shadow: 0 0 1px #999;
 }
-
 .view--text p{
 	line-height:1.8;
 }
+.view--guide{
+	margin-top:0.8rem;
+	font-size:12px;
+}
+.view--guide dl>div{
+	display: flex;
+}
+.view--guide dl dt{
+	min-width: 4rem;
+}
+.view--guide dl dd{
+	border-left-width:0;
+	border-left-style:none;
+	text-transform: uppercase;
+}
+.view--guide dl dd::before{
+	content:"";
+	box-sizing: border-box;
+	display: inline-block;
+	width:1.25rem;
+	height:1.25rem;
+	margin-left:0.2em;
+	margin-right:0.2em;
+	border-left-width:1.25rem;
+	border-left-style:solid;
+	border-left-color:inherit;
+	box-shadow: 0 0 1px #999;
+}
+
+
 .tool{
 	position: absolute;
 	top:0;
